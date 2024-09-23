@@ -6,8 +6,6 @@ const userModel = require('./models/userModel');
 const app = express();
 
 
-
-
 app.use(express.json());
 
 app.set('view engine', 'ejs');
@@ -24,7 +22,7 @@ app.get('/user',async (req, res) => {
    await  userModel.findOne({email:email}).then((user)=>{
     bcrypt.compare(req.query.password, user.password, function(err, result) {
       if(result){
-        res.render('userProfile', {
+        res.render('index', {
           // test email:google@gmail.com password:abc --> registered user
           username: user.username,
           email: user.email,

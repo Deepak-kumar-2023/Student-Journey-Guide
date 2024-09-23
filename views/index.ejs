@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previous Year Papers</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    font-family: Arial, sans-serif;
+    background-color:black;
+    color: white;
+}
+.logo{
+    display: flex;
+}
+.logo-text{
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+.logo-img{
+    width: 70px;
+    height: 70px;
+}
+
+header {
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: 600px) {
+        flex-direction: column;
+        
+    }
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+    display: flex;
+    @media screen and (max-width: 600px) {
+        flex-direction: column;
+        
+    }
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.search-bar input {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.papers-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.paper-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    background-color: #333;
+}
+
+.paper-card img {
+    width: 50px;
+    height: 50px;
+}
+
+.preview-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    position: relative;
+}
+
+.modal-content iframe {
+    width: 100%;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+</style>
+<body>
+    <header>
+       <div class="logo">
+         <img class="logo-img" src="https://i.ibb.co/d42CsCQ/logo.webp" alt="">
+        <div class="logo-text">Campus  <br>Papers</div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="">PAPERS</a></li>
+                <li><a href="">NOTES</a></li>
+                <li><a href="">ROADMAP</a></li>
+            </ul>
+        </nav>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search by subject or year...">
+            <button>Search</button>
+        </div>
+
+    </header>
+    
+    <main>
+        <h1>Download Previous Year Papers</h1>
+        
+
+        <div class="papers-list">
+            <div class="paper-card">
+                <h3>Mathematics Midterm 2023 second year</h3>
+                <p>Year: 2023 | Subject: Mathematics | Type: Midterm</p>
+               
+                <a href="../downloads/2023_Mathematics_midsem.pdf" download>
+                    <button class="button" type="submit">Download</button>
+                </a>
+            </div>
+           
+            <div class="paper-card">
+                <h3>operating system Midterm 2023 second year</h3>
+                <p>Year: 2023 | Subject: operating system | Type: Midterm</p>
+                <a href="../downloads/2023_operation_system_midsem.pdf" download>
+                    <button class="button" type="submit">Download</button>
+                </a>
+            </div>
+
+            <div class="paper-card">
+                <h3>DBMS Midterm 2023 second year</h3>
+                <p>Year: 2023 | Subject: DBMS | Type: mid sem</p>
+                <a href="../downloads/2023_dbms_midsem.pdf" download>
+                    <button class="button" type="submit">Download</button>
+                </a>
+            </div>
+
+            <div class="paper-card">
+                <h3>Ethics Midterm 2023 second year</h3>
+                <p>Year: 2023 | Subject: Ethics | Type: mid sem</p>
+                <a href="../downloads/2023_ethics_midsem.pdf" download>
+                    <button class="button" type="submit">Download</button>
+                </a>
+            </div>
+
+            <div class="paper-card">
+                <h3>data structure and algorithm Midterm 2023 second year</h3>
+                <p>Year: 2023 | Subject: DSA | Type: mid sem</p>
+                <a href="../downloads/2023_DSA_midsem.pdf" download>
+                    <button class="button" type="submit">Download</button>
+                </a>
+            </div>
+
+            <div class="paper-card">
+                <h3>Oops Midterm 2023 second year</h3>
+                <p>Year: 2023 | Subject: oops | Type: mid sem</p>
+                <a href="../downloads/2023_oops_midsem.pdf" download>
+                    <button class="button" type="submit">Download</button>
+                </a>
+            </div>
+
+      
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 Campus Papers. All rights reserved.</p>
+    </footer>
+    https://drive.google.com/file/d/1Hjrjen8gsyBN1SOxG8KFTDg_V8w7L96F/view?usp=drive_link
+    <script>
+        document.querySelectorAll('.paper-card button').forEach(button => {
+            button.addEventListener('click', function() {
+                const paperTitle = this.parentElement.querySelector('h3').innerText;
+                const paperYear = this.parentElement.querySelector('p').innerText.match(/Year: (\d+)/)[1];
+                const paperSubject = this.parentElement.querySelector('p').innerText.match(/Subject: (\w+)/)[1];
+                const paperType = this.parentElement.querySelector('p').innerText.match(/Type: (\w+)/)[1];
+
+                const fileName = `${paperYear}_${paperSubject}_${paperType}.pdf`;
+                const fileUrl = `/downloads/${fileName}`;
+
+                const link = document.createElement('a');
+                link.href = fileUrl;
+                link.download = fileName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        });
+        
+        document.querySelector('.search-bar button').addEventListener('click', function() {
+            const query = document.querySelector('.search-bar input').value.toLowerCase();
+            document.querySelectorAll('.paper-card').forEach(card => {
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                const details = card.querySelector('p').innerText.toLowerCase();
+                if (title.includes(query) || details.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+    </script>
+    
+</body>
+</html>
