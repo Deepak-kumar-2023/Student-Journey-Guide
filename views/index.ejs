@@ -10,132 +10,295 @@
     body {
         margin: 0;
         padding: 0;
-    font-family: Arial, sans-serif;
-    background-color:black;
-    color: white;
-}
-.logo{
-    display: flex;
-}
-.logo-text{
-    font-size: 30px;
-    font-weight: bold;
-    margin-left: 20px;
-}
-.logo-img{
-    width: 70px;
-    height: 70px;
-}
-
-header {
-    margin-top: 0;
-    display: flex;
-    justify-content: space-between;
-    @media screen and (max-width: 600px) {
-        flex-direction: column;
-        
+        font-family: Arial, sans-serif;
+        background-color: #121212;  /* Darker black background */
+        color: #E6D5B8;  /* Light brown text */
     }
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-}
 
-nav ul {
-    list-style-type: none;
-    display: flex;
-    gap: 15px;
-    display: flex;
-    @media screen and (max-width: 600px) {
-        flex-direction: column;
-        
+    .logo {
+        display: flex;
+        animation: fadeInRight 0.8s ease forwards;
     }
-}
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
+    .logo-text {
+        font-size: 30px;
+        font-weight: bold;
+        margin-left: 20px;
+        color: #C4A484;  /* Brown shade for logo text */
+    }
 
-.search-bar input {
-    padding: 5px;
-    margin-right: 10px;
-}
+    .logo-img {
+        width: 70px;
+        height: 70px;
+    }
 
-h1 {
-    text-align: center;
-    margin-top: 20px;
-}
+    header {
+        margin-top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px;
+        background-color: #1E1E1E;  /* Slightly lighter black */
+        border-bottom: 2px solid #8B4513;  /* Brown border */
+        @media screen and (max-width: 600px) {
+            flex-direction: column;
+        }
+    }
 
-.filters {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-}
+    nav ul {
+        list-style-type: none;
+        display: flex;
+        gap: 15px;
+        display: flex;
+        animation: fadeInDown 0.8s ease forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        @media screen and (max-width: 600px) {
+            flex-direction: column;
+        }
+    }
 
-.papers-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
+    nav ul li a {
+        color: #DEB887;  /* Burly wood color for nav links */
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
 
-.paper-card {
-    border: 1px solid #ddd;
-    padding: 15px;
-    width: 200px;
-    text-align: center;
-    background-color: #333;
-}
+    nav ul li a:hover {
+        color: #D2691E;  /* Chocolate brown on hover */
+    }
 
-.paper-card img {
-    width: 50px;
-    height: 50px;
-}
+    .search-bar input {
+        padding: 8px 15px;
+        margin-right: 10px;
+        background-color: #2D2D2D;
+        border: 1px solid #8B4513;
+        color: #E6D5B8;
+        border-radius: 4px;
+    }
 
-.preview-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
+    .search-bar button {
+        padding: 8px 15px;
+        background-color: #8B4513;
+        color: #E6D5B8;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-.modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    width: 80%;
-    position: relative;
-}
+    .search-bar button:hover {
+        background-color: #A0522D;
+    }
 
-.modal-content iframe {
-    width: 100%;
-}
+    h1 {
+        text-align: center;
+        margin-top: 30px;
+        color: #DEB887;
+        font-size: 2.2em;
+        animation: fadeInDown 0.8s ease forwards;
+        animation-delay: 0.8s;
+        opacity: 0;
+    }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 25px;
-    cursor: pointer;
-}
+    .papers-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 25px;
+        padding: 20px;
+        margin-bottom: 60px;
+    }
 
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
+    .paper-card {
+        border: 1px solid #8B4513;
+        padding: 20px;
+        width: 250px;
+        text-align: center;
+        background-color: #1E1E1E;
+        border-radius: 8px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 6px rgba(139, 69, 19, 0.1);
+        animation: fadeInUp 0.8s ease forwards;
+        opacity: 0;
+    }
 
+    .paper-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(139, 69, 19, 0.2);
+    }
+
+    .paper-card h3 {
+        color: #DEB887;
+        margin-bottom: 15px;
+        font-size: 1.2em;
+    }
+
+    .paper-card p {
+        color: #BC8F8F;  /* Rosy brown */
+        margin-bottom: 20px;
+        font-size: 0.9em;
+    }
+
+    .paper-card button {
+        background-color: #8B4513;
+        color: #E6D5B8;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+    }
+
+    .paper-card button:hover {
+        background-color: #A0522D;
+    }
+
+    footer {
+        text-align: center;
+        padding: 15px;
+        background-color: #1E1E1E;
+        color: #DEB887;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        border-top: 2px solid #8B4513;
+        animation: fadeInUp 0.8s ease forwards;
+        animation-delay: 1.6s;
+        opacity: 0;
+    }
+
+    .user-info {
+        color: #DEB887;
+        font-size: 1.1em;
+        animation: fadeInDown 0.8s ease forwards;
+        animation-delay: 0.4s;
+        opacity: 0;
+    }
+
+    .user-info strong {
+        color: #D2691E;
+    }
+
+    .preview-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        width: 80%;
+        position: relative;
+    }
+
+    .modal-content iframe {
+        width: 100%;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+    /* Add these new animation keyframes and styles */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInRight {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Apply animations to elements */
+    .logo {
+        animation: fadeInRight 0.8s ease forwards;
+    }
+
+    nav ul {
+        animation: fadeInDown 0.8s ease forwards;
+        animation-delay: 0.2s;
+        opacity: 0;
+        /* ... existing nav ul styles ... */
+    }
+
+    .user-info {
+        animation: fadeInDown 0.8s ease forwards;
+        animation-delay: 0.4s;
+        opacity: 0;
+        /* ... existing user-info styles ... */
+    }
+
+    .search-bar {
+        animation: fadeInDown 0.8s ease forwards;
+        animation-delay: 0.6s;
+        opacity: 0;
+        /* ... existing search-bar styles ... */
+    }
+
+    h1 {
+        animation: fadeInDown 0.8s ease forwards;
+        animation-delay: 0.8s;
+        opacity: 0;
+        /* ... existing h1 styles ... */
+    }
+
+    .paper-card {
+        animation: fadeInUp 0.8s ease forwards;
+        opacity: 0;
+        /* ... existing paper-card styles ... */
+    }
+
+    /* Add different delays for each paper card */
+    .papers-list .paper-card:nth-child(1) { animation-delay: 1.0s; }
+    .papers-list .paper-card:nth-child(2) { animation-delay: 1.1s; }
+    .papers-list .paper-card:nth-child(3) { animation-delay: 1.2s; }
+    .papers-list .paper-card:nth-child(4) { animation-delay: 1.3s; }
+    .papers-list .paper-card:nth-child(5) { animation-delay: 1.4s; }
+    .papers-list .paper-card:nth-child(6) { animation-delay: 1.5s; }
+
+    footer {
+        animation: fadeInUp 0.8s ease forwards;
+        animation-delay: 1.6s;
+        opacity: 0;
+        /* ... existing footer styles ... */
+    }
 </style>
 <body>
     <header>
@@ -151,6 +314,10 @@ footer {
                 <li><a href="">ROADMAP</a></li>
             </ul>
         </nav>
+        <div class="user-info">
+            <span>Welcome, <strong><%= username%></strong></span>
+            
+        </div>
 
         <div class="search-bar">
             <input type="text" placeholder="Search by subject or year...">
@@ -217,10 +384,9 @@ footer {
         </div>
     </main>
 
-    <footer>
-        <p>© 2024 Campus Papers. All rights reserved.</p>
-    </footer>
-    https://drive.google.com/file/d/1Hjrjen8gsyBN1SOxG8KFTDg_V8w7L96F/view?usp=drive_link
+    
+    <!-- pick of logo -->
+    <!-- https://drive.google.com/file/d/1Hjrjen8gsyBN1SOxG8KFTDg_V8w7L96F/view?usp=drive_link -->
     <script>
         document.querySelectorAll('.paper-card button').forEach(button => {
             button.addEventListener('click', function() {

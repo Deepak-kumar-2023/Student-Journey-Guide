@@ -1,64 +1,96 @@
 const express = require('express'); 
 const bcrypt = require('bcrypt');
-const saltRounds = 0;
-require('dotenv').config()
+require('dotenv').config();
 const userModel = require('./models/userModel');
+const { log } = require('winston');
 const app = express();
 
 
-app.use(express.json());
 
+
+const saltRounds = 10; // Recommended for secure password hashing
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
+// Render Login Form
 app.get('/', (req, res) => {
-    res.render('login_form')
-});
-app.get('/signup', (req, res) => {
-    res.render('sign_up');
-});
-app.get('/user',async (req, res) => {
-  const email=req.query.email;
- console.log("email",email);
-   await  userModel.findOne({email:email}).then((user)=>{
-    bcrypt.compare(req.query.password, user.password, function(err, result) {
-      if(result){
-        res.render('index', {
-          // test email:google@gmail.com password:abc --> registered user
-          username: user.username,
-          email: user.email,
-      });
-      }else{
-        res.redirect('/login');
-      }
-    });
-  
-});
+    res.render('login_form');
 });
 
 app.get('/login', (req, res) => {
-    res.render('login_form');
-});
-app.get('/userProfile', (req, res) => {
-    const uesrname = req.query.Username;
-    const emial = req.query.email;
-    const password = req.query.password;
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-      bcrypt.hash(password, salt,async function(err, hash) {
-          // Store hash in your password DB.
-        const newuser=  await userModel.create({username:uesrname,email:emial,password:hash});
-
-        console.log("new user",newuser);
-      });
-  })
-    res.render('userProfile', {
-        username: uesrname,
-        email: emial,
-    });
+  res.render('login_form');
 });
 
 
-
-
-app.listen(process.env.PORT, () => {
-  console.log(`Example app listening at http://localhost:${process.env.PORT}`);
+// Render Sign-Up Form
+app.get('/signup', (req, res) => {
+    res.render('sign_up');
 });
+
+// Handle Login
+app.post('/post_login', async (req, res) => {
+  
+        const { email, password } = req.body;
+    
+        // Updated regex for the new email pattern
+        const emailRegex = /^[a-zA-Z0-9._%+-]+\.ug23\.cs@nitp\.ac\.in$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).send("Only emails ending with '.ug23.cs@nitp.ac.in' are allowed.");
+        }
+    
+        if (!email || !password) {
+            return res.status(400).send("Email and password are required.");
+        }
+    
+        try {
+            const user = await userModel.findOne({ email });
+            if (!user) {
+                return res.status(404).send("User not found.");
+            }
+    
+            const match = await bcrypt.compare(password, user.password);
+            if (match) {
+                res.render('index', { username: user.username, email: user.email });
+            } else {
+                res.status(401).send("Incorrect password.");
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            res.status(500).send("Internal server error.");
+        }
+ 
+    
+});
+
+// Handle Sign-Up
+app.post('/post_signup', async (req, res) => {
+   
+        const { username, email, password } = req.body;
+    
+        const emailRegex = /^[a-zA-Z0-9._%+-]+\.ug23\.cs@nitp\.ac\.in$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).send("Only emails ending with '.ug23.cs@nitp.ac.in' are allowed.");
+        }
+    
+        if (!username || !email || !password) {
+            return res.status(400).send("All fields are required.");
+        }
+    
+        try {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const newUser = await userModel.create({ username, email, password: hashedPassword });
+            res.render('index', { username: newUser.username, email: newUser.email });
+        } catch (error) {
+            console.error("Error during signup:", error);
+            res.status(500).send("Internal server error.");
+        }
+   
+    
+});
+
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`App listening at http://localhost:${process.env.PORT || 3000}`);
+});
+

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ignUp Form</title>
+    <title>SignUp Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
     <script type="application/x-javascript">
@@ -876,11 +876,12 @@
       <h1>SignUp</h1>
       <div class="main-agileinfo">
         <div class="agileits-top">
-          <form action="/userProfile" method="get">
-            <input class="text" type="text" name="Username" placeholder="Username"required=""/>
-            <input class="text email" type="email" name="email" placeholder="Email" required=""/>
-            <input class="text" type="password" name="password" placeholder="Password" required=""/>
-            <!-- <input class="text w3lpass" type="password" name="password" placeholder="Confirm Password" required=""/> -->
+
+          <form action="/post_signup" method="post">
+            <input class="text" type="text" name="username" placeholder="Username" required />
+			<input class="text email" type="email" name="email" placeholder="Email" required />
+			<input class="text" type="password" name="password" placeholder="Password" required />
+
             <div class="wthree-text">
               <label class="anim">
                 <input type="checkbox" class="checkbox" required="" />
@@ -890,6 +891,7 @@
             </div>
             <input type="submit" value="SIGNUP" />
           </form>
+		  
           <p>Don't have an Account? <a href="login"> Login Now!</a></p>
         </div>
       </div>
@@ -913,4 +915,60 @@
       </ul>
     </div>
   </body>
+  <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+        const emailInput = document.querySelector('input[name="email"]').value;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+\.ug23\.cs@nitp\.ac\.in$/;
+
+        if (!emailRegex.test(emailInput)) {
+            event.preventDefault(); // Stop form submission
+            
+            // Create custom alert element
+            const alertDiv = document.createElement('div');
+            alertDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 15px 25px;
+                background-color: #fee2e2;
+                border: 1px solid #ef4444;
+                border-radius: 8px;
+                color: #991b1b;
+                font-size: 14px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            
+            alertDiv.textContent = "Only emails ending with '.ug23.cs@nitp.ac.in' are allowed.";
+            document.body.appendChild(alertDiv);
+
+            // Add animation keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from {
+                        transform: translate(-50%, -100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translate(-50%, 0);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Remove alert after 3 seconds
+            setTimeout(() => {
+                alertDiv.style.opacity = '0';
+                alertDiv.style.transition = 'opacity 0.3s ease-out';
+                setTimeout(() => alertDiv.remove(), 300);
+            }, 3000);
+        }
+    });
+</script>
+
 </html>
