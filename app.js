@@ -2,9 +2,28 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 const userModel = require('./models/userModel');
-const { log } = require('winston');
 const app = express();
 
+const Visit = require('./models/visitModel');
+
+
+// Ensure a visit document exists in the database
+const initializeVisitCounter = async () => {
+    try {
+        let visit = await Visit.findOne();
+        if (!visit) {
+            visit = new Visit({ count: 0 });
+            await visit.save();
+            console.log("Visitor counter initialized to 0.");
+        }else{
+            console.log("Visitor counter already initialized.",visit.count);
+        }
+    } catch (error) {
+        console.error("Error initializing visitor counter:", error);
+    }
+};
+
+initializeVisitCounter();
 
 
 
@@ -15,7 +34,17 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 // Render Login Form
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+    try {
+        // Increment visitor count
+        const visit = await Visit.findOne();
+        visit.count += 1;
+        await visit.save();
+
+    } catch (error) {
+        console.error("Error updating visitor counter:", error);
+        res.status(500).send("Internal server error.");
+    }
     res.render('login_form');
 });
 
@@ -47,14 +76,15 @@ app.post('/post_login', async (req, res) => {
         try {
             const user = await userModel.findOne({ email });
             if (!user) {
-                return res.status(404).send("User not found.");
+                res.render('login_form');
             }
     
             const match = await bcrypt.compare(password, user.password);
             if (match) {
-                res.render('index', { username: user.username, email: user.email });
+                const visit = await Visit.findOne();
+                res.render('index', { username: user.username, email: user.email, visitCount: visit.count });
             } else {
-                res.status(401).send("Incorrect password.");
+                res.render('login_form');
             }
         } catch (error) {
             console.error("Error during login:", error);
@@ -81,7 +111,8 @@ app.post('/post_signup', async (req, res) => {
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
             const newUser = await userModel.create({ username, email, password: hashedPassword });
-            res.render('index', { username: newUser.username, email: newUser.email });
+            const visit = await Visit.findOne();
+            res.render('index', { username: newUser.username, email: newUser.email, visitCount: visit.count });
         } catch (error) {
             console.error("Error during signup:", error);
             res.status(500).send("Internal server error.");

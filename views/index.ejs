@@ -302,6 +302,77 @@
 </style>
 <body>
     <header>
+    <div class="visitor-count">
+        <div class="visitor-icon">👥</div>
+        <div class="visitor-text">
+            <span>Total Visitors</span>
+            <strong class="counter"><%= visitCount %></strong>
+        </div>
+        <style>
+            .visitor-count {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                padding: 10px 20px;
+                border-radius: 50px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                animation: slideIn 0.8s ease forwards;
+            }
+
+            .visitor-icon {
+                font-size: 24px;
+                animation: bounce 2s infinite;
+            }
+
+            .visitor-text {
+                display: flex;
+                flex-direction: column;
+                line-height: 1.2;
+            }
+
+            .visitor-text span {
+                font-size: 14px;
+                opacity: 0.8;
+            }
+
+            .visitor-text strong {
+                font-size: 20px;
+                background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: countUp 2s ease-out;
+            }
+
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-5px); }
+            }
+
+            @keyframes slideIn {
+                from {
+                    transform: translateX(-50px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes countUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
+    </div>
        <div class="logo">
          <img class="logo-img" src="https://i.ibb.co/d42CsCQ/logo.webp" alt="">
         <div class="logo-text">Campus  <br>Papers</div>
