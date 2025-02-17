@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/99e5f00a-6c6e-458b-9b9f-349d1bda8349/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/exampapers",
+    "appService.deploySubpath": "."
+}
