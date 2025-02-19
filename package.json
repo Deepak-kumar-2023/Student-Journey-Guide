@@ -6,7 +6,7 @@
   "scripts": {
     
     "start": "node app.js",
-    "build": "node app.js",
+    "build": "echo 'No build step required' ",
     "dev": "nodemon app.js"
   },
   "keywords": [],
@@ -17,9 +17,7 @@
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "mongoose": "^8.4.1",
-    "morgan": "^1.10.0",
-    "winston": "^3.13.0"
+    "mongoose": "^8.4.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.6"

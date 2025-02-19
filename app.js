@@ -121,7 +121,11 @@ app.post('/post_signup', async (req, res) => {
     
 });
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`App listening at http://localhost:${process.env.PORT || 3000}`);
+
+    const PORT = process.env.PORT || 5000;
+
+
+app.listen(PORT, () => {
+    console.log(`App listening at http://localhost:${PORT}`);
 });
 
