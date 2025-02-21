@@ -2,7 +2,14 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 const userModel = require('./models/userModel');
+const cors = require('cors');
+
 const app = express();
+
+app.use(cors());
+
+app.use("downloads", express.static("downloads"));
+
 
 const Visit = require('./models/visitModel');
 
@@ -32,6 +39,17 @@ const saltRounds = 10; // Recommended for secure password hashing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
+
+//download option 
+app.get("/download/:filename", (req, res) => {
+    const filePath = path.join(__dirname, "downloads", req.params.filename);
+    res.download(filePath, (err) => {
+        if (err) {
+            res.status(500).send("Error downloading the file.");
+        }
+    });
+});
+
 
 // Render Login Form
 app.get('/', async (req, res) => {

@@ -386,7 +386,7 @@
             </ul>
         </nav>
         <div class="user-info">
-            <span>Welcome, <strong><%= username%></strong></span>
+            <span>Welcome</span>
             
         </div>
 
@@ -406,7 +406,7 @@
                 <h3>Mathematics Midterm 2023 second year</h3>
                 <p>Year: 2023 | Subject: Mathematics | Type: Midterm</p>
                
-                <a href="../downloads/2023_Mathematics_midsem.pdf" download>
+                <a href="/downloads/2023_dbms_midsem.pdf" >
                     <button class="button" type="submit">Download</button>
                 </a>
             </div>
@@ -414,7 +414,7 @@
             <div class="paper-card">
                 <h3>operating system Midterm 2023 second year</h3>
                 <p>Year: 2023 | Subject: operating system | Type: Midterm</p>
-                <a href="../downloads/2023_operation_system_midsem.pdf" download>
+                <a href="/downloads/2023_operation_system_midsem.pdf" >
                     <button class="button" type="submit">Download</button>
                 </a>
             </div>
@@ -422,7 +422,7 @@
             <div class="paper-card">
                 <h3>DBMS Midterm 2023 second year</h3>
                 <p>Year: 2023 | Subject: DBMS | Type: mid sem</p>
-                <a href="../downloads/2023_dbms_midsem.pdf" download>
+                <a href="/downloads/2023_dbms_midsem.pdf" >
                     <button class="button" type="submit">Download</button>
                 </a>
             </div>
@@ -430,7 +430,7 @@
             <div class="paper-card">
                 <h3>Ethics Midterm 2023 second year</h3>
                 <p>Year: 2023 | Subject: Ethics | Type: mid sem</p>
-                <a href="../downloads/2023_ethics_midsem.pdf" download>
+                <a href="/downloads/2023_ethics_midsem.pdf" download>
                     <button class="button" type="submit">Download</button>
                 </a>
             </div>
@@ -438,7 +438,7 @@
             <div class="paper-card">
                 <h3>data structure and algorithm Midterm 2023 second year</h3>
                 <p>Year: 2023 | Subject: DSA | Type: mid sem</p>
-                <a href="../downloads/2023_DSA_midsem.pdf" download>
+                <a href="/downloads/2023_DSA_midsem.pdf" >
                     <button class="button" type="submit">Download</button>
                 </a>
             </div>
@@ -446,7 +446,7 @@
             <div class="paper-card">
                 <h3>Oops Midterm 2023 second year</h3>
                 <p>Year: 2023 | Subject: oops | Type: mid sem</p>
-                <a href="../downloads/2023_oops_midsem.pdf" download>
+                <a href="/downloads/2023_oops_midsem.pdf" >
                     <button class="button" type="submit">Download</button>
                 </a>
             </div>
@@ -458,25 +458,9 @@
     
     <!-- pick of logo -->
     <!-- https://drive.google.com/file/d/1Hjrjen8gsyBN1SOxG8KFTDg_V8w7L96F/view?usp=drive_link -->
+    <script src="../scripts/downloadsScript.js"></script>
     <script>
-        document.querySelectorAll('.paper-card button').forEach(button => {
-            button.addEventListener('click', function() {
-                const paperTitle = this.parentElement.querySelector('h3').innerText;
-                const paperYear = this.parentElement.querySelector('p').innerText.match(/Year: (\d+)/)[1];
-                const paperSubject = this.parentElement.querySelector('p').innerText.match(/Subject: (\w+)/)[1];
-                const paperType = this.parentElement.querySelector('p').innerText.match(/Type: (\w+)/)[1];
-
-                const fileName = `${paperYear}_${paperSubject}_${paperType}.pdf`;
-                const fileUrl = `/downloads/${fileName}`;
-
-                const link = document.createElement('a');
-                link.href = fileUrl;
-                link.download = fileName;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            });
-        });
+        
         
         document.querySelector('.search-bar button').addEventListener('click', function() {
             const query = document.querySelector('.search-bar input').value.toLowerCase();
