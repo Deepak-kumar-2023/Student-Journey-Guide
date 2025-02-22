@@ -299,6 +299,325 @@
         opacity: 0;
         /* ... existing footer styles ... */
     }
+
+    /* Responsive navbar styles */
+    .menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .menu-toggle span {
+        width: 30px;
+        height: 3px;
+        background: #DEB887;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(8px, -8px);
+    }
+
+    @media screen and (max-width: 768px) {
+        header {
+            padding: 15px;
+            position: relative;
+        }
+
+        .menu-toggle {
+            display: flex;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100vh;
+            width: 70%;
+            background: rgba(30, 30, 30, 0.98);
+            backdrop-filter: blur(10px);
+            transition: right 0.3s ease;
+            z-index: 999;
+        }
+
+        nav.active {
+            right: 0;
+        }
+
+        nav ul {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            font-size: 1.2em;
+        }
+
+        .search-bar {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(5px);
+            display: none;
+        }
+
+        .search-bar.active {
+            display: flex;
+        }
+
+        .user-info {
+            display: none;
+        }
+
+        .logo {
+            flex: 1;
+            justify-content: center;
+        }
+
+        .logo-text {
+            font-size: 24px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    /* Mobile-specific paper card styles */
+    @media screen and (max-width: 480px) {
+        .papers-list {
+            padding: 10px;
+            gap: 15px;
+        }
+
+        .paper-card {
+            width: 100%;
+            margin: 0;
+            padding: 15px;
+            animation: slideUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .paper-card h3 {
+            font-size: 1.1em;
+        }
+
+        .paper-card p {
+            font-size: 0.9em;
+        }
+
+        .paper-card button {
+            width: 100%;
+            padding: 12px;
+        }
+    }
+
+    /* Tablet styles */
+    @media screen and (min-width: 481px) and (max-width: 768px) {
+        .papers-list {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+    }
+
+    /* Animation keyframes */
+    @keyframes slideUp {
+        from {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Hamburger Menu Button */
+    .hamburger-menu {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 22px;
+        cursor: pointer;
+        z-index: 1000;
+        margin-left: auto; /* This will push it to the right */
+    }
+
+    .hamburger-menu span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: #DEB887;
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .mobile-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(20, 20, 20, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 999;
+        transition: right 0.3s ease-in-out;
+        padding-top: 80px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .hamburger-menu {
+            display: flex;
+        }
+
+        nav > ul {
+            display: none; /* Hide original nav */
+        }
+
+        .mobile-nav {
+            display: block;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .hamburger-menu.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        .search-bar {
+            display: none; /* Hide search bar on mobile */
+        }
+
+        .user-info {
+            display: none; /* Hide user info on mobile */
+        }
+    }
+
+    /* Add these styles for the year sections */
+    .year-section {
+        margin: 40px 0;
+        padding: 20px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: sectionFadeIn 0.8s ease forwards;
+    }
+
+    .year-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .year-heading {
+        font-size: 2em;
+        margin-bottom: 30px;
+        text-align: center;
+        background: linear-gradient(45deg, #FF3366, #6B46C1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .year-heading::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, #FF3366, #6B46C1);
+        border-radius: 2px;
+    }
+
+    .papers-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        padding: 20px;
+    }
+
+    @keyframes sectionFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Year-specific accent colors */
+    .first-year {
+        --accent-color-1: #FF3366;
+        --accent-color-2: #FF6B6B;
+    }
+
+    .second-year {
+        --accent-color-1: #6B46C1;
+        --accent-color-2: #9B6BFF;
+    }
+
+    .third-year {
+        --accent-color-1: #3B82F6;
+        --accent-color-2: #60A5FA;
+    }
+
+    .fourth-year {
+        --accent-color-1: #10B981;
+        --accent-color-2: #34D399;
+    }
+
+    .year-section .paper-card {
+        border-color: var(--accent-color-1);
+    }
+
+    .year-section .paper-card button {
+        background: linear-gradient(45deg, var(--accent-color-1), var(--accent-color-2));
+    }
+
+    .year-section .year-heading {
+        background: linear-gradient(45deg, var(--accent-color-1), var(--accent-color-2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 </style>
 <body>
     <header>
@@ -375,84 +694,103 @@
     </div>
        <div class="logo">
          <img class="logo-img" src="https://i.ibb.co/d42CsCQ/logo.webp" alt="">
-        <div class="logo-text">Campus  <br>Papers</div>
+        <div class="logo-text">Campus<br>Papers</div>
         </div>
 
         <nav>
             <ul>
-                <li><a href="">PAPERS</a></li>
-                <li><a href="">NOTES</a></li>
+                <li><a href="all_papers.ejs">IIT PAPERS</a></li>
+                
                 <li><a href="">ROADMAP</a></li>
             </ul>
         </nav>
+
+        <div class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="mobile-nav">
+            <ul>
+                <li><a href="all_papers.ejs">IIT PAPERS</a></li>
+                <li><a href="">NOTES</a></li>
+                <li><a href="">ROADMAP</a></li>
+            </ul>
+        </div>
+
         <div class="user-info">
             <span>Welcome</span>
-            
         </div>
 
         <div class="search-bar">
             <input type="text" placeholder="Search by subject or year...">
             <button>Search</button>
         </div>
-
     </header>
     
     <main>
         <h1>Download Previous Year Papers</h1>
-        
 
-        <div class="papers-list">
-            <div class="paper-card">
-                <h3>Mathematics Midterm 2023 second year</h3>
-                <p>Year: 2023 | Subject: Mathematics | Type: Midterm</p>
-               
-                <a href="/downloads/2023_dbms_midsem.pdf" >
-                    <button class="button" type="submit">Download</button>
-                </a>
+        <!-- First Year Section -->
+        <section class="year-section first-year">
+            <h2 class="year-heading">First Year</h2>
+            <div class="papers-list">
+                <div class="paper-card">
+                    <h3>Mathematics-I</h3>
+                    <p>Year: 2023 | Subject: Mathematics | Type: Midterm</p>
+                    <a href="/downloads/first_year/math1_midsem.pdf">
+                        <button class="button" type="submit">Download</button>
+                    </a>
+                </div>
+                <!-- Add more first year papers -->
             </div>
-           
-            <div class="paper-card">
-                <h3>operating system Midterm 2023 second year</h3>
-                <p>Year: 2023 | Subject: operating system | Type: Midterm</p>
-                <a href="/downloads/2023_operation_system_midsem.pdf" >
-                    <button class="button" type="submit">Download</button>
-                </a>
-            </div>
+        </section>
 
-            <div class="paper-card">
-                <h3>DBMS Midterm 2023 second year</h3>
-                <p>Year: 2023 | Subject: DBMS | Type: mid sem</p>
-                <a href="/downloads/2023_dbms_midsem.pdf" >
-                    <button class="button" type="submit">Download</button>
-                </a>
+        <!-- Second Year Section -->
+        <section class="year-section second-year">
+            <h2 class="year-heading">Second Year</h2>
+            <div class="papers-list">
+                <div class="paper-card">
+                    <h3>Data Structures</h3>
+                    <p>Year: 2023 | Subject: DSA | Type: Midterm</p>
+                    <a href="/downloads/2023_DSA_midsem.pdf">
+                        <button class="button" type="submit">Download</button>
+                    </a>
+                </div>
+                <!-- Add more second year papers -->
             </div>
+        </section>
 
-            <div class="paper-card">
-                <h3>Ethics Midterm 2023 second year</h3>
-                <p>Year: 2023 | Subject: Ethics | Type: mid sem</p>
-                <a href="/downloads/2023_ethics_midsem.pdf" download>
-                    <button class="button" type="submit">Download</button>
-                </a>
+        <!-- Third Year Section -->
+        <section class="year-section third-year">
+            <h2 class="year-heading">Third Year</h2>
+            <div class="papers-list">
+                <div class="paper-card">
+                    <h3>Machine Learning</h3>
+                    <p>Year: 2023 | Subject: ML | Type: Midterm</p>
+                    <a href="/downloads/third_year/ml_midsem.pdf">
+                        <button class="button" type="submit">Download</button>
+                    </a>
+                </div>
+                <!-- Add more third year papers -->
             </div>
+        </section>
 
-            <div class="paper-card">
-                <h3>data structure and algorithm Midterm 2023 second year</h3>
-                <p>Year: 2023 | Subject: DSA | Type: mid sem</p>
-                <a href="/downloads/2023_DSA_midsem.pdf" >
-                    <button class="button" type="submit">Download</button>
-                </a>
+        <!-- Fourth Year Section -->
+        <section class="year-section fourth-year">
+            <h2 class="year-heading">Fourth Year</h2>
+            <div class="papers-list">
+                <div class="paper-card">
+                    <h3>Cloud Computing</h3>
+                    <p>Year: 2023 | Subject: Cloud | Type: Midterm</p>
+                    <a href="/downloads/fourth_year/cloud_midsem.pdf">
+                        <button class="button" type="submit">Download</button>
+                    </a>
+                </div>
+                <!-- Add more fourth year papers -->
             </div>
-
-            <div class="paper-card">
-                <h3>Oops Midterm 2023 second year</h3>
-                <p>Year: 2023 | Subject: oops | Type: mid sem</p>
-                <a href="/downloads/2023_oops_midsem.pdf" >
-                    <button class="button" type="submit">Download</button>
-                </a>
-            </div>
-
-      
-        </div>
+        </section>
     </main>
 
     
@@ -477,5 +815,60 @@
 
     </script>
     
+    
+
+   
+
+    <!-- Add this script at the end of the body -->
+    <script>
+        const hamburger = document.querySelector('.hamburger-menu');
+        const mobileNav = document.querySelector('.mobile-nav');
+        
+        // Toggle mobile menu
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking links
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileNav.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+
+    <!-- Add this script for section animations -->
+    <script>
+        // Intersection Observer for section animations
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Animate cards within the section
+                    entry.target.querySelectorAll('.paper-card').forEach((card, index) => {
+                        card.style.animationDelay = `${index * 0.1}s`;
+                    });
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all year sections
+        document.querySelectorAll('.year-section').forEach(section => {
+            sectionObserver.observe(section);
+        });
+    </script>
 </body>
 </html>
