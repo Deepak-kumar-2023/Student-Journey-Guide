@@ -41,7 +41,9 @@ app.set('view engine', 'ejs');
 // Render home page
 app.get('/', async (req, res) => {
     const visit = await Visit.findOne();
-    res.render('index', { visitCount: visit.count });
+            visit.count += 1;
+            await visit.save();
+    res.render('index');
 });
 
 
@@ -49,9 +51,15 @@ app.get('/', async (req, res) => {
 //download option 
 app.get("/downloads/:filename", async (req, res) => {
     const filePath = path.join(__dirname, "downloads", req.params.filename);
-    const visit = await Visit.findOne();
+    // const visit = await Visit.findOne();
     res.download(filePath);
     // res.render('index', { visitCount: visit.count });
+});
+app.get("/views", async (req, res) => {
+    // const filePath = path.join(__dirname, "downloads", req.params.filename);
+    // const visit = await Visit.findOne();
+    // res.download(filePath);
+    res.render('all_papers');
 });
 
 
