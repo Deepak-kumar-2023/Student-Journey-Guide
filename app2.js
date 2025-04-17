@@ -40,9 +40,9 @@ app.set('view engine', 'ejs');
 
 // Render home page
 app.get('/', async (req, res) => {
-    const visit = await Visit.findOne();
-            visit.count += 1;
-            await visit.save();
+    // const visit = await Visit.findOne();
+    //         visit.count += 1;
+    //         await visit.save();
     res.render('index');
 });
 
