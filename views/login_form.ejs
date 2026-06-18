@@ -356,7 +356,10 @@
     const form = document.querySelector('form');
     form.addEventListener('submit', (event) => {
         const emailInput = document.querySelector('input[name="email"]').value;
-        const emailRegex = /^[a-zA-Z0-9._%+-]+\.ug23\.cs@nitp\.ac\.in$/;
+        // const emailRegex = /^[a-zA-Z0-9._%+-]+\.ug23\.cs@nitp\.ac\.in$/;
+        // For Gmail addresses
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
 
         if (!emailRegex.test(emailInput)) {
             event.preventDefault(); // Stop form submission
@@ -379,7 +382,7 @@
                 animation: slideIn 0.3s ease-out;
             `;
             
-            alertDiv.textContent = "Only emails ending with '.ug23.cs@nitp.ac.in' are allowed.";
+            alertDiv.textContent = "Only emails ending with '@gmail.com' are allowed.";
             document.body.appendChild(alertDiv);
 
             // Add animation keyframes

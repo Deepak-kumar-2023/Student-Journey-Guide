@@ -82,9 +82,12 @@ app.post('/post_login', async (req, res) => {
         const { email, password } = req.body;
     
         // Updated regex for the new email pattern
-        const emailRegex = /^[a-zA-Z0-9._%+-]+\.ug23\.cs@nitp\.ac\.in$/;
+        // const emailRegex = /^[a-zA-Z0-9._%+-]+\.ug23\.cs@nitp\.ac\.in$/;
+        // For Gmail addresses
+const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
         if (!emailRegex.test(email)) {
-            return res.status(400).send("Only emails ending with '.ug23.cs@nitp.ac.in' are allowed.");
+            return res.status(400).send("Only emails ending with '@gmail.com' are allowed.");
         }
     
         if (!email || !password) {
@@ -117,9 +120,11 @@ app.post('/post_signup', async (req, res) => {
    
         const { username, email, password } = req.body;
     
-        const emailRegex = /^[a-zA-Z0-9._%+-]+\.ug23\.cs@nitp\.ac\.in$/;
+        // const emailRegex = /^[a-zA-Z0-9._%+-]+\.ug23\.cs@nitp\.ac\.in$/;
+        // For Gmail addresses
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
         if (!emailRegex.test(email)) {
-            return res.status(400).send("Only emails ending with '.ug23.cs@nitp.ac.in' are allowed.");
+            return res.status(400).send("Only emails ending with '@gmail.com' are allowed.");
         }
     
         if (!username || !email || !password) {

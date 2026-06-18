@@ -4,9 +4,9 @@
   "description": "",
   "main": "app2.js",
   "scripts": {
-    "start": "node app2.js",
+    "start": "node app.js",
     "build": "echo 'No build step required' ",
-    "dev": "nodemon app2.js"
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
